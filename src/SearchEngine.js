@@ -36,7 +36,7 @@ export default function SearchEngine() {
           {" "}
           <ReactAnimatedWeather
             icon="PARTLY_CLOUDY_DAY"
-            color="black"
+            color="white"
             size="50"
             animate={true}
           />
