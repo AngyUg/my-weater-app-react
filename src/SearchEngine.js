@@ -1,58 +1,59 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
 
 export default function SearchEngine() {
-  let [text, setText] = useState("");
+  let [text, setText] = useState({});
   let [city, setCity] = useState("");
-  let [temperature, setTemperature] = useState(null);
-  let [description, setDescription] = useState(null);
-  let [humidity, setHumidity] = useState(null);
-  let [wind, setWind] = useState(null);
-  let [icon, setIcon] = useState(null);
-  let link = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  let [loaded, setLoaded] = useState(false);
 
-  function showData(response) {
+  function showDataWeather(response) {
+    setLoaded(true);
     console.log(response);
-    setTemperature(response.data.main.temp);
-    setDescription(response.data.weather[0].description);
-    setHumidity(response.data.main.humidity);
-    setWind(response.data.wind.speed);
-    setIcon(response.data.weather[0].icon);
+    setText({
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    });
   }
 
   function handleSubmit(event) {
+    event.preventDefault();
     let units = "metric";
     let apiKey = "8f8d5f703465caae3978b75cf8f80c67";
     let apiEndPoint = "https://api.openweathermap.org/data/2.5/weather";
     let url = `${apiEndPoint}?q=${city}&units=${units}&appid=${apiKey}`;
-    axios.get(url).then(showData);
-
-    event.preventDefault();
-    setText(
-      <div>
-        <div>Temperature {Math.round(temperature)}°C</div>{" "}
-        <div>Description: "{description}"</div>
-        <div>Humidity: {Math.round(humidity)}%</div>
-        <div>Wind: {wind}km/h</div>
-        <div>
-          <img src={link} />
-        </div>
-      </div>
-    );
+    axios.get(url).then(showDataWeather);
   }
 
   function updateCity(event) {
     setCity(event.target.value);
   }
 
-  return (
-    <div className="SearchEngine">
-      <form onSubmit={handleSubmit}>
-        <input type="search" placeholder="City..." onChange={updateCity} />
-        <input type="submit" value="Search" />
-        <p>{text}</p>
-      </form>
-    </div>
+  let form = (
+    <form onSubmit={handleSubmit}>
+      <input type="search" placeholder="City..." onChange={updateCity} />
+      <button type="submit">Search</button>
+    </form>
   );
+
+  if (loaded) {
+    return (
+      <div>
+        {form}
+        <div>
+          <div>Temperature {Math.round(text.temperature)}°C</div>{" "}
+          <div>Description: "{text.description}"</div>
+          <div>Humidity: {Math.round(text.humidity)}%</div>
+          <div>Wind: {text.wind}km/h</div>
+          <div>
+            <img src={text.icon} alt={text.description} />
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return form;
+  }
 }
