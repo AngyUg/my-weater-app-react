@@ -9,6 +9,8 @@ export default function SearchEngine() {
   let [description, setDescription] = useState(null);
   let [humidity, setHumidity] = useState(null);
   let [wind, setWind] = useState(null);
+  let [icon, setIcon] = useState(null);
+  let link = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
   function showData(response) {
     console.log(response);
@@ -16,6 +18,7 @@ export default function SearchEngine() {
     setDescription(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
+    setIcon(response.data.weather[0].icon);
   }
 
   function handleSubmit(event) {
@@ -33,13 +36,7 @@ export default function SearchEngine() {
         <div>Humidity: {Math.round(humidity)}%</div>
         <div>Wind: {wind}km/h</div>
         <div>
-          {" "}
-          <ReactAnimatedWeather
-            icon="PARTLY_CLOUDY_DAY"
-            color="white"
-            size="50"
-            animate={true}
-          />
+          <img src={link} />
         </div>
       </div>
     );
