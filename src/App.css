@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -10,9 +10,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(188, 245, 179);
 }
 
 .App-link {
   color: #61dafb;
 }
+*/
