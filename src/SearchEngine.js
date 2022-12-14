@@ -49,12 +49,13 @@ export default function SearchEngine() {
             className="form-control"
             type="search"
             placeholder="City..."
+            autoFocus="on"
             onChange={updateCity}
           />
         </div>
         <div class="col-3">
           {" "}
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary w-100">
             Search
           </button>
         </div>
