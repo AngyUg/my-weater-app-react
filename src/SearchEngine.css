@@ -12,13 +12,14 @@
   align-items: center;
   justify-content: center;*/
 }
+
+.SearchEngine form {
+  margin-bottom: 20px;
+}
+
 h1 {
   padding-left: 30px;
   font-family: "Brush Script MT", cursive;
   font-size: 32px;
   text-shadow: 4px 4px 4px #aaa;
-}
-
-.SearchEngine form {
-  margin-bottom: 20px;
 }

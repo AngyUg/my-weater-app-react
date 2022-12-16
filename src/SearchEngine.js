@@ -2,30 +2,26 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SearchEngine.css";
 import background from "./backgroundImage.jpg";
+import Loader from "./Loader.js";
+import WeatherIcons from "./WeatherIcons";
+
+import FormatDate from "./FormatDate.js";
 
 export default function SearchEngine() {
-  let [text, setText] = useState({});
-  let [city, setCity] = useState("");
-  let [loaded, setLoaded] = useState(false);
-
-  let dayTimeNow = new Date().toLocaleDateString("en-us", {
-    weekday: "long",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
+  const [textWeather, setTextWeather] = useState({ loaded: false });
+  const [city, setCity] = useState("London");
 
   function showDataWeather(response) {
-    setLoaded(true);
     console.log(response);
-    setText({
+    setTextWeather({
+      loaded: true,
       city: response.data.name,
       country: response.data.sys.country,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
     });
   }
 
@@ -44,8 +40,8 @@ export default function SearchEngine() {
 
   let form = (
     <form onSubmit={handleSubmit}>
-      <div class="row">
-        <div class="col-9">
+      <div className="row">
+        <div className="col-9">
           <input
             className="form-control"
             type="search"
@@ -54,7 +50,7 @@ export default function SearchEngine() {
             onChange={updateCity}
           />
         </div>
-        <div class="col-3">
+        <div className="col-3">
           {" "}
           <button type="submit" className="btn btn-primary w-100">
             Search
@@ -64,47 +60,56 @@ export default function SearchEngine() {
     </form>
   );
 
-  if (loaded) {
+  if (textWeather.loaded) {
     return (
       <div
         className="SearchEngine"
         style={{ backgroundImage: `url(${background})` }}
       >
         {form}
-        <div className="row">
-          <div className="col-12">
-            {" "}
-            <h1>
-              {text.city}, {text.country}
-            </h1>
+        <div className="WeatherDetails">
+          <div className="row">
+            <div className="col-12">
+              {" "}
+              <h1>{textWeather.city}</h1>
+            </div>
+          </div>{" "}
+          <div className="row">
+            <div className="col-6">
+              <ul>
+                <div>
+                  <FormatDate />
+                </div>
+                <div>{textWeather.description}</div>
+              </ul>
+            </div>
+            <div className="col-6">
+              <div>Humidity: {Math.round(textWeather.humidity)}%</div>
+              <div>Wind: {textWeather.wind}km/h</div>
+            </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-6">
-            <ul>
-              <div>Today is {dayTimeNow}</div>
-              <div>{text.description}</div>
-            </ul>
-          </div>
-          <div className="col-6">
-            <div>Humidity: {Math.round(text.humidity)}%</div>
-            <div>Wind: {text.wind}km/h</div>
-          </div>
-        </div>
-        <div className="col-6">
-          <div className="clearfix weather-temperature">
-            <img className="icon" src={text.icon} alt={text.description} />
-            <strong>
-              <span className="temperature">
-                {Math.round(text.temperature)}
-              </span>
-            </strong>
-            <span className="units">°C | F</span>
+            <div className="clearfix weather-temperature">
+              <div>
+                <WeatherIcons code={textWeather.icon} />
+              </div>
+              <strong>
+                <span className="temperature float-left">
+                  {Math.round(textWeather.temperature)}
+                </span>
+              </strong>
+              <span className="units">°C | F</span>
+            </div>
           </div>
         </div>
       </div>
     );
   } else {
-    return form;
+    return (
+      <div>
+        {form}
+        <Loader />
+      </div>
+    );
   }
 }
