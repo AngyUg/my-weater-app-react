@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SearchEngine.css";
+import background from "./backgroundImage.jpg";
 
 export default function SearchEngine() {
   let [text, setText] = useState({});
@@ -65,7 +66,10 @@ export default function SearchEngine() {
 
   if (loaded) {
     return (
-      <div className="SearchEngine">
+      <div
+        className="SearchEngine"
+        style={{ backgroundImage: `url(${background})` }}
+      >
         {form}
         <div className="row">
           <div className="col-12">
@@ -89,10 +93,13 @@ export default function SearchEngine() {
         </div>
         <div className="col-6">
           <div className="clearfix weather-temperature">
-            <img src={text.icon} alt={text.description} />
-            <span className="temperature">
-              {Math.round(text.temperature)}°C
-            </span>
+            <img className="icon" src={text.icon} alt={text.description} />
+            <strong>
+              <span className="temperature">
+                {Math.round(text.temperature)}
+              </span>
+            </strong>
+            <span className="units">°C | F</span>
           </div>
         </div>
       </div>
