@@ -4,12 +4,12 @@ import "./SearchEngine.css";
 import background from "./backgroundImage.jpg";
 import Loader from "./Loader.js";
 import WeatherIcons from "./WeatherIcons";
-
+import WeatherTemperature from "./WeatherTemperature";
 import FormatDate from "./FormatDate.js";
 
-export default function SearchEngine() {
+export default function SearchEngine(props) {
   const [textWeather, setTextWeather] = useState({ loaded: false });
-  const [city, setCity] = useState("London");
+  const [city, setCity] = useState(props.defCity);
 
   function showDataWeather(response) {
     console.log(response);
@@ -93,21 +93,20 @@ export default function SearchEngine() {
               <div>
                 <WeatherIcons code={textWeather.icon} />
               </div>
-              <strong>
-                <span className="temperature float-left">
-                  {Math.round(textWeather.temperature)}
-                </span>
-              </strong>
-              <span className="units">°C | F</span>
+              <WeatherTemperature celsius={textWeather.temperature} />
             </div>
           </div>
         </div>
       </div>
     );
   } else {
+    let units = "metric";
+    let apiKey = "8f8d5f703465caae3978b75cf8f80c67";
+    let apiEndPoint = "https://api.openweathermap.org/data/2.5/weather";
+    let url = `${apiEndPoint}?q=${city}&units=${units}&appid=${apiKey}`;
+    axios.get(url).then(showDataWeather);
     return (
       <div>
-        {form}
         <Loader />
       </div>
     );

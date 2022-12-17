@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <SearchEngine />
+        <SearchEngine defCity="London" />
         <footer>
           <div className="row">
             <div className="col-2">Coded by</div>
