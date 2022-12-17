@@ -105,10 +105,6 @@ export default function SearchEngine(props) {
     let apiEndPoint = "https://api.openweathermap.org/data/2.5/weather";
     let url = `${apiEndPoint}?q=${city}&units=${units}&appid=${apiKey}`;
     axios.get(url).then(showDataWeather);
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 }
