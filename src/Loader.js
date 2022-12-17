@@ -5,8 +5,8 @@ export default function Loader() {
   return (
     <Dna
       visible={true}
-      height="200"
-      width="200"
+      height="190"
+      width="190"
       ariaLabel="dna-loading"
       wrapperStyle={{}}
       wrapperClass="dna-wrapper"
