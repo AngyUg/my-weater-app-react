@@ -1,0 +1,11 @@
+.WeathersForcast {
+  text-align: center;
+}
+
+.WeathersForcast .forecast-temperature {
+  font-size: 15px;
+}
+
+.WeathersForcast .forecast-temperature-min {
+  opacity: 0.6;
+}

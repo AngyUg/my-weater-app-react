@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import "./SearchEngine.css";
 import background from "./backgroundImage.jpg";
-import Loader from "./Loader.js";
 
+import Loader from "./Loader";
+import WeathersForcast from "./WeathersForcast";
 import WeatherDescription from "./WeatherDescription";
 
 export default function SearchEngine(props) {
@@ -73,6 +75,7 @@ export default function SearchEngine(props) {
         <div className="WeatherDetails">
           <WeatherDescription data={textWeather} />
         </div>
+        <WeathersForcast />
       </div>
     );
   } else {
