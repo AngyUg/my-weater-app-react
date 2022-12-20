@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./App.css";
 import SearchEngine from "./SearchEngine";
 
@@ -5,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <SearchEngine defCity="London" />
+        <SearchEngine defCity="Barcelona" />
         <footer>
           <div className="row">
             <div className="col-2">Coded by</div>

@@ -7,5 +7,5 @@ export default function FormatDate() {
     minute: "2-digit",
     hour12: false,
   });
-  return dayTimeNow;
+  return <div className="FormatDate">{dayTimeNow}</div>;
 }
