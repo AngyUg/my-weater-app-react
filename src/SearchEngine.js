@@ -25,6 +25,11 @@ export default function SearchEngine(props) {
   }
 
   function handleSubmit(event) {
+    event.preventDefault();
+    finder();
+  }
+
+  function finder() {
     let units = "metric";
     let apiKey = "8f8d5f703465caae3978b75cf8f80c67";
     let apiEndPoint = "https://api.openweathermap.org/data/2.5/weather";
@@ -71,7 +76,7 @@ export default function SearchEngine(props) {
       </div>
     );
   } else {
-    handleSubmit();
+    finder();
     return <Loader />;
   }
 }
