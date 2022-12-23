@@ -9,3 +9,7 @@
 .WeathersForcast .forecast-temperature-min {
   opacity: 0.6;
 }
+
+.colorRing {
+  text-align: center;
+}
