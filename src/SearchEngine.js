@@ -23,6 +23,8 @@ export default function SearchEngine(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       icon: response.data.weather[0].icon,
+      lat: response.data.coord.lat,
+      lon: response.data.coord.lon,
     });
   }
 
@@ -31,16 +33,16 @@ export default function SearchEngine(props) {
     finder();
   }
 
+  function updateCity(event) {
+    setCity(event.target.value);
+  }
+
   function finder() {
     let units = "metric";
     let apiKey = "8f8d5f703465caae3978b75cf8f80c67";
     let apiEndPoint = "https://api.openweathermap.org/data/2.5/weather";
     let url = `${apiEndPoint}?q=${city}&units=${units}&appid=${apiKey}`;
     axios.get(url).then(showDataWeather);
-  }
-
-  function updateCity(event) {
-    setCity(event.target.value);
   }
 
   let form = (
@@ -72,14 +74,20 @@ export default function SearchEngine(props) {
         style={{ backgroundImage: `url(${background})` }}
       >
         {form}
-        <div className="WeatherDetails">
+        <div className="weatherDetails">
           <WeatherDescription data={textWeather} />
         </div>
-        <WeathersForcast />
+        <div>
+          <WeathersForcast lat={textWeather.lat} lon={textWeather.lat} />
+        </div>
       </div>
     );
   } else {
     finder();
-    return <Loader />;
+    return (
+      <div className="loader">
+        <Loader />;{" "}
+      </div>
+    );
   }
 }

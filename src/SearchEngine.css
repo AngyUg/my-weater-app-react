@@ -30,3 +30,7 @@ h1 {
   flex-wrap: nowrap;
   align-items: center;
 }
+
+.loader {
+  text-align: center;
+}
