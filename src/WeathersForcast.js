@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import WeatherIcons from "./WeatherIcons";
 import "./WeathersForcast.css";
 import SpinerColorRing from "./SpinerColorRing";
+import FiveDaysFuture from "./FiveDaysFuture";
 
 export default function WeathersForcast(props) {
   const [ready, setRedy] = useState(false);
@@ -27,8 +27,8 @@ export default function WeathersForcast(props) {
     let units = "metric";
     //key for future 5 days weather
     //let apiKey = "562f5cd9cac04a0ceac338ac4e531d8c";
-    /* let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";*/
-    let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";
+    let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";
+    /*let apiKey = "c8a77112b2faf6684bb4b21a0aa778ae";*/
     let apiEndPoint = "https://api.openweathermap.org/data/2.5/onecall";
     let apiUrl = `${apiEndPoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
     console.log("get url" + apiUrl);
@@ -44,29 +44,7 @@ export default function WeathersForcast(props) {
             if (index < 6 && index !== 0) {
               return (
                 <div className="col" key={index}>
-                  <div class="forecast-day">
-                    <strong>
-                      {new Date(
-                        forecastFutureDays.dt * 1000
-                      ).toLocaleDateString("en-us", {
-                        weekday: "short",
-                      })}
-                    </strong>
-                  </div>
-                  <WeatherIcons
-                    code={forecastFutureDays.weather[0].icon}
-                    size="50"
-                  />
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">
-                      <strong>
-                        {Math.round(forecastFutureDays.temp.max)} C°{" "}
-                      </strong>
-                    </span>
-                    <span class="forecast-temperature-min">
-                      {Math.round(forecastFutureDays.temp.min)} C°
-                    </span>
-                  </div>
+                  <FiveDaysFuture days={forecastFutureDays} />
                 </div>
               );
             } else {
