@@ -23,8 +23,7 @@ export default function SearchEngine(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       icon: response.data.weather[0].icon,
-      lat: response.data.coord.lat,
-      lon: response.data.coord.lon,
+      coordinates: response.data.coord,
     });
   }
 
@@ -78,7 +77,7 @@ export default function SearchEngine(props) {
           <WeatherDescription data={textWeather} />
         </div>
         <div>
-          <WeathersForcast lat={textWeather.lat} lon={textWeather.lat} />
+          <WeathersForcast coordinates={textWeather.coordinates} />
         </div>
       </div>
     );

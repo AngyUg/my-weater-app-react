@@ -10,7 +10,7 @@ export default function WeathersForcast(props) {
 
   useEffect(() => {
     setRedy(false);
-  }, [props.lon, props.lat]);
+  }, [props.coordinates]);
 
   function handleResponse(response) {
     setRedy(true);
@@ -21,8 +21,8 @@ export default function WeathersForcast(props) {
   }
 
   function getPointByCoords() {
-    let lon = props.lon;
-    let lat = props.lat;
+    let lon = props.coordinates.lon;
+    let lat = props.coordinates.lat;
     console.log(lat, lon);
     let units = "metric";
     //key for future 5 days weather
