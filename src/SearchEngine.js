@@ -79,25 +79,6 @@ export default function SearchEngine(props) {
         <div>
           <WeathersForcast coordinates={textWeather.coordinates} />
         </div>
-
-        <footer>
-          Coded by{" "}
-          <a
-            href="https://www.linkedin.com/in/angelina-yuga-226929187/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Angelina Yuga
-          </a>{" "}
-          open-sourced on{" "}
-          <a
-            href="https://github.com/AngyUg/my-weater-app-react"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </footer>
       </div>
     );
   } else {
