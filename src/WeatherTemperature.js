@@ -16,7 +16,7 @@ export default function WeatherTemperature(props) {
     return props.temp * (9 / 5) + 32;
   }
 
-  if (units === "metric") {
+  /*if (units === "metric") {
     return (
       <div className="WeatherTemperature">
         <strong>
@@ -44,5 +44,14 @@ export default function WeatherTemperature(props) {
         </span>
       </div>
     );
-  }
+  }*/
+
+  return (
+    <div className="WeatherTemperature">
+      <strong>
+        <span className="temperature">{Math.round(props.temp)}</span>
+      </strong>
+      <span className="units">°C</span>
+    </div>
+  );
 }
