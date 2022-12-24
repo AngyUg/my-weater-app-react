@@ -13,3 +13,8 @@
 .colorRing {
   text-align: center;
 }
+
+.WeathersForcast {
+  background-color: rgba(183, 211, 210, 0.467) !important;
+  border-radius: 10px;
+}

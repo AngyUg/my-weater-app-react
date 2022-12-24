@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import "./SearchEngine.css";
-import background from "./backgroundImage.jpg";
+import background from "./backgroundImage2.jpg";
 
 import Loader from "./Loader";
 import WeathersForcast from "./WeathersForcast";
