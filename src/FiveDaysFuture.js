@@ -15,10 +15,10 @@ export default function FiveDaysFuture(props) {
       <WeatherIcons code={props.days.weather[0].icon} size="50" />
       <div class="forecast-temperature">
         <span class="forecast-temperature-max">
-          <strong>{Math.round(props.days.temp.max)} C° </strong>
+          <strong>{Math.round(props.days.temp.max)} ° </strong>
         </span>
         <span class="forecast-temperature-min">
-          {Math.round(props.days.temp.min)} C°
+          {Math.round(props.days.temp.min)} °
         </span>
       </div>
     </div>
