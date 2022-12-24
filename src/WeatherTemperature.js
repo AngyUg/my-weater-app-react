@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function WeatherTemperature(props) {
-  const [units, setUnits] = useState("metric");
+  /*const [units, setUnits] = useState("metric");
   function convertToFaring(event) {
     event.preventDefault();
     setUnits("imperial");
@@ -14,7 +14,7 @@ export default function WeatherTemperature(props) {
 
   function faring() {
     return props.temp * (9 / 5) + 32;
-  }
+  }*/
 
   /*if (units === "metric") {
     return (
