@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 
 export default function WeatherTemperature(props) {
-  const [units, setUnits] = useState("celsius");
+  const [units, setUnits] = useState("metric");
   function convertToFaring(event) {
     event.preventDefault();
-    setUnits("faring");
+    setUnits("imperial");
   }
 
   function convertToCelsius(event) {
     event.preventDefault();
-    setUnits("celsius");
+    setUnits("metric");
   }
 
   function faring() {
-    return props.celsius * (9 / 5) + 32;
+    return props.temp * (9 / 5) + 32;
   }
 
-  if (units === "celsius") {
+  if (units === "metric") {
     return (
       <div className="WeatherTemperature">
         <strong>
-          <span className="temperature">{Math.round(props.celsius)}</span>
+          <span className="temperature">{Math.round(props.temp)}</span>
         </strong>
         <span className="units">
           °C |{" "}
