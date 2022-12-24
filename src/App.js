@@ -17,6 +17,7 @@ function App() {
           >
             Angelina Yuga
           </a>{" "}
+          open-sourced on{" "}
           <a
             href="https://github.com/AngyUg/my-weater-app-react"
             target="_blank"
